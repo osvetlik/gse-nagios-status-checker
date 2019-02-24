@@ -15,20 +15,24 @@ const SERVICE_QUERY_PARAMS = {
 
 const NagiosChecker = new Lang.Class({
 	Name: 'NagiosChecker',
-	Extends: St.Bin,
+	Extends: St.BoxLayout,
 
 	_init: function () {
 		this.parent({
 			style_class: 'panel-button',
 			reactive: true,
 			can_focus: true,
-			x_fill: true,
-			y_fill: false,
 			track_hover: true
 		});
 		this._currentStatus = null;
-		this._icon = new St.Icon({ icon_name: 'media-record-symbolic', style_class: 'system-status-icon' });
-		this.set_child(this._icon);
+		let text = new St.Label({ "text": "N", style_class: 'system-status-icon' });
+		this.add_child(text);
+		this._icon = new St.Icon({
+			icon_name: 'media-record-symbolic',
+			style_class: 'system-status-icon',
+			label_actor: text
+		});
+		this.add_child(this._icon);
 		// this.connect('button-press-event', doSomething());
 		// this._currentStatus = 'warn';
 		this.connect('button-press-event', Lang.bind(this, this._refresh));
