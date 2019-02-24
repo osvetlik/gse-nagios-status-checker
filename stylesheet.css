@@ -2,10 +2,22 @@
 .helloworld-label {
     font-size: 36px;
     font-weight: bold;
-    color: #ffffff;
+    color: #ff0000;
     background-color: rgba(10,10,10,0.7);
     border-radius: 5px;
     padding: .5em;
+}
+
+.nagios-status-ok {
+	color: #00ff00;
+}
+
+.nagios-status-error {
+	color: #ff0000;
+}
+
+.nagios-status-warn {
+	color: #ff7700;
 }
 
 
