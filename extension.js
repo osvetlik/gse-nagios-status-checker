@@ -31,7 +31,7 @@ const NagiosChecker = new Lang.Class({
 		this.set_child(this._icon);
 		// this.connect('button-press-event', doSomething());
 		// this._currentStatus = 'warn';
-		// this.connect('button-press-event', Lang.bind(this, this._setStatus));
+		this.connect('button-press-event', Lang.bind(this, this._refresh));
 
 		this._settings = Lib.getSettings();
 		this._http = new Soup.Session({
@@ -57,7 +57,7 @@ const NagiosChecker = new Lang.Class({
 
 	_refresh: function() {
 		this._icon.set_icon_name('document-open-recent-symbolic');
-		let msg = Soup.form_request_new_from_hash('GET', this._settings.get_string('url') + 'statusjson.cgi', SERVICE_QUERY_PARAMS);
+		let msg = Soup.form_request_new_from_hash('GET', this._settings.get_string('url') + '/statusjson.cgi', SERVICE_QUERY_PARAMS);
 		this._http.queue_message(msg, Lang.bind(this, this._processReply));
 	},
 

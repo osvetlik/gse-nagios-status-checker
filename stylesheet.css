@@ -9,7 +9,7 @@
 }
 
 .nagios-status-ok {
-	color: #00ff00;
+	color: rgba(127, 255, 127, 0.4);
 }
 
 .nagios-status-error {
