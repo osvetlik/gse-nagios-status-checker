@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.nagios-checker" path="/org/gnome/shell/extensions/nagios-checker/">
+    <key name="username" type="s">
+      <default>''</default>
+    </key>
+    <key name="password" type="s">
+      <default>''</default>
+    </key>
+    <key name="url" type="s">
+      <default>''</default>
+    </key>
+    <key name="timeout" type="i">
+      <default>5</default>
+    </key>
+    <key name="active" type="b">
+      <default>false</default>
+    </key>
+  </schema>
+</schemalist>
+

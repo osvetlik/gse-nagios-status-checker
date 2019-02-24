@@ -1,1 +1,11 @@
-{"name": "Nagios Status Checker", "description": "Check Nagios for Host/Service problems.", "uuid": "NagiosStatusChecker@ondrej.svetlik", "shell-version": ["3.30.2"]}
+{
+	"name": "Nagios Status Checker",
+	"description": "Check Nagios for Host/Service problems.",
+	"uuid": "NagiosStatusChecker@ondrej.svetlik",
+	"shell-version": ["3.30.2"],
+	"version": "0.2",
+	"extension-id": "nagios-checker",
+	"url": "https://github.com/osvetlik/gse-nagios-status-checker",
+	"original-author": "ondrej@svetlik.info",
+	"settings-schema": "org.gnome.shell.extensions.nagios-checker"
+}
