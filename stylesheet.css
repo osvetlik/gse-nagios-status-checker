@@ -12,12 +12,19 @@
 	color: rgba(127, 255, 127, 0.4);
 }
 
-.nagios-status-error {
+.nagios-status-critical {
 	color: #ff0000;
 }
 
-.nagios-status-warn {
-	color: #ff7700;
+.nagios-status-unknown {
+	color: #7f7fff;
 }
 
+.nagios-status-warning {
+	color: #ff7f00;
+}
+
+.nagios-status-failed {
+	color: #ff00ff;
+}
 

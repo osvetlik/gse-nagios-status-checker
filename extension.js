@@ -13,6 +13,11 @@ const SERVICE_QUERY_PARAMS = {
 	"servicestatus": "warning critical unknown"
 };
 
+const HTTP_SESSION_PARAMS = {
+	"user-agent": "nagios-checker/" + Me.metadata['version'],
+	"timeout": 10
+};
+
 const NagiosChecker = new Lang.Class({
 	Name: 'NagiosChecker',
 	Extends: St.BoxLayout,
@@ -38,9 +43,7 @@ const NagiosChecker = new Lang.Class({
 		this.connect('button-press-event', Lang.bind(this, this._refresh));
 
 		this._settings = Lib.getSettings();
-		this._http = new Soup.Session({
-			"user-agent": "nagios-checker/" + Me.metadata['version']
-		});
+		this._http = new Soup.Session(HTTP_SESSION_PARAMS);
 		this._http.connect('authenticate', Lang.bind(this, this._authenticate));
 
 		this._refresh();
@@ -72,10 +75,35 @@ const NagiosChecker = new Lang.Class({
 		}
 		else {
 			let json = JSON.parse(message.response_body.data);
-			this._currentStatus = "ok";
+			let keys = Object.keys(json.data.servicelist)
+			if (keys.length > 0) {
+				this._checkResponseData(json.data.servicelist);
+			}
+			else {
+				this._currentStatus = "ok";
+			}
 		}
 
 		this._setStatus();
+	},
+
+	_checkResponseData: function (data) {
+		let max = 0;
+		for (i in data) {
+			for (j in data[i]) {
+				max = Math.max(max, data[i][j]);
+			}
+		}
+
+		if (max >= 16) {
+			this._currentStatus = "critical";
+		}
+		else if (max >= 8) {
+			this._currentStatus = "unknown";
+		}
+		else if (max >= 4) {
+			this._currentStatus = "warning";
+		}
 	}
 });
 
